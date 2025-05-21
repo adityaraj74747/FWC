@@ -1,16 +1,17 @@
-# Polynomial Zeroes and Coefficients – Exercise 2.1
+# LaTeX Assignment – PDF Compilation
 
-This repository contains LaTeX source code and output files for **Exercise 2.1** on the topic _"Relationship between Zeroes and Coefficients of a Polynomial"_.
+This repository contains LaTeX source code and compiled output for an academic or project-based assignment. It is designed to be generic and reusable for any topic or subject.
 
-## Files Included
+## 📁 Files Included
 
-- `task1.tex`: Main LaTeX source file.
-- `task1.pdf`: Compiled PDF output of the LaTeX file.
-- `task1.aux`, `task1.log`, `task1.out`: Auxiliary files generated during compilation.
+- `main.tex`: The primary LaTeX source file. (Filename may vary)
+- `main.pdf`: Compiled PDF output.
+- Auxiliary files generated during compilation:
+  - `.aux`, `.log`, `.out`, etc.
 
-## How to Compile
+## 🛠 How to Compile
 
-To compile the LaTeX file:
+To generate the PDF from the LaTeX source, run the following command in the terminal:
 
 ```bash
-pdflatex task1.tex
+pdflatex <filename>.tex
