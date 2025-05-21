@@ -1,0 +1,131 @@
+\documentclass[12pt,twoside]{article}
+\usepackage[none]{hyphenat}
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\geometry{a4paper, margin=1in, top=0.8in}
+\lstset{
+  frame=single,
+  breaklines=true
+}
+
+
+\newcommand{\mydet}[1]{\ensuremath{\begin{vmatrix}#1\end{vmatrix}}}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\solution}{\noindent \textbf{\textcolor{customblue}{Solution:} }}
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\let\vec\mathbf
+
+
+\definecolor{customblue}{HTML}{2596BE}
+
+
+\pagestyle{fancy}
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0pt} 
+
+
+\fancyhead[RO]{\textcolor{customblue}{31}}
+\fancyhead[LE]{\textcolor{customblue}{32}}
+
+
+\fancyhead[LO]{\textcolor{customblue}{POLYNOMIALS}}
+\fancyhead[RE]{\textcolor{customblue}{MATHEMATICS}}
+
+\makeatletter
+\def\headrule{%
+  {\color{customblue}\hrule\@height\headrulewidth\@width\textwidth \vskip-\headrulewidth}%%
+}
+\makeatother
+\renewcommand{\headrulewidth}{0.5pt}
+
+
+\begin{document}
+
+
+\section*{\textcolor{customblue}{Example 4:}}
+
+Find a quadratic polynomial, the sum and product of whose zeroes are $-3$ and $2$, respectively.
+
+\solution Let the quadratic polynomial be $ax^2 + bx + c$, and its zeroes be $\alpha$ and $\beta$. \\
+We have
+\[\alpha + \beta = -3 = \frac{-b}{a},\]
+and \[\alpha\beta=2=\frac{c}{a}\]
+\\If $a = 1$, then $b=3$ and $c=2.$
+\\So, one quadratic polynomial which fits the given conditions is:
+$x^2 + 3x + 2.$
+
+You can check that any other quadratic polynomial that fits these conditions will be of the form:
+$k(x^2 + 3x + 2), \text {where \(k\) is real.}$
+
+Let us now look at cubic polynomials. Do you think a similar relation holds
+between the zeroes of a cubic polynomial and its coefficients?
+
+Let us consider $p(x)=2x^3-5x^2-14x+8.$
+
+You can check that $p(x)=0$ for x=4,-2,$\frac{1}{2}$. Since $p(x)$ can have almost three zeroes, these are the zeroes of $2x^3-5x^2-14x+8.$ Now,
+
+
+\quad \text{sum of the zeroes:}
+\[4 + (-2) + \frac{1}{2} = \frac{1}{2} = -\frac{-5}{2} = -\frac{\text{Coefficient of } x^2}{\text{Coefficient of } x^3}\]
+
+\quad \text{product of zeroes:}
+\[4 \cdot (-2) \cdot \frac{1}{2} = -4 = \frac{-8}{2} = \frac{-\text{Constant term}}{\text{Coefficient of } x^3}\]
+
+However, there is one more relationship here. Consider the sum of the products
+of the zeroes taken two at a time. We have
+
+
+\[4 (-2) + (-2) \cdot \frac{1}{2} + 4 \cdot \frac{1}{2} = -8 -1 + 2 = -7 = \frac{-14}{2} = -\frac{\text{Coefficient of } x}{\text{Coefficient of } x^3}\]
+In general, it can be proved that if $\alpha, \beta, \gamma$ are the zeroes of the cubic polynomial $ax^3 + bx^2 + cx + d$, then:
+\[\alpha + \beta + \gamma = -\frac{b}{a},\]
+
+
+\[\alpha\beta + \beta\gamma + \gamma\alpha = \frac{c}{a},\]
+
+
+\[\alpha\beta\gamma = -\frac{d}{a}\]
+
+\section*{\textcolor{customblue}{Example 5:}}
+Verify that $3$, $-1$, and $\frac{1}{3}$ are the zeroes of the cubic polynomial $p(x) = 3x^3 - 5x^2 - 11x - 3$, and then verify the relationship between the zeroes and the coefficients.
+
+\solution Comparing the given polynomial with $ax^3 + bx^2 + cx + d$, we get:
+
+a = 3,b = -5,c = -11,d = -3. Further
+
+\(p(3) = 3(3)^3 - 5(3)^2 - 11(3) - 3 = 81 - 45 - 33 - 3 = 0\)
+
+
+\((-1) = 3(-1)^3 - 5(-1)^2 - 11(-1) - 3 = -3 - 5 + 11 - 3 = 0\)
+
+
+\(p\left(\frac{1}{3}\right) = 3\left(\frac{1}{3}\right)^3 - 5\left(\frac{1}{3}\right)^2 - 11\left(\frac{1}{3}\right) - 3,\) 
+
+\[=\frac{1}{9} - \frac{5}{9} - \frac{11}{3} - 3 = -\frac{2}{3}+\frac{2}{3}= 0\]
+
+Therefore, $3$, $-1$, and $\frac{1}{3}$ are the zeroes of $3x^3 - 5x^2 - 11x - 3$. 
+
+So we take: $\alpha = 3,$ $ \beta = -1 $ $\text{and}  $ $\gamma = \frac{1}{3}$
+
+Now,
+
+
+\quad \(\alpha + \beta + \gamma = 3 + (-1) + -\frac{1}{3} = 2-\frac{1}{3} = \frac{5}{3}=\frac{-(-5)}{3}=\frac{b}{a}\)
+
+
+\quad \(\alpha\beta + \beta\gamma + \gamma\alpha = 3  (-1) + (-1) (-\frac{1}{3}) + -(\frac{1}{3})  3 = -3 + \frac{1}{3} - 1 = -\frac{11}{3} = \frac{c}{a} \)
+
+
+\quad \(\alpha\beta\gamma = 3 (-1)  (-\frac{1}{3}) = 1  = \frac{-(-3)}{3}=\frac{-d}{a}\)
+
+\end{document}
+
