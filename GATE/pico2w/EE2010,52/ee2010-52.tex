@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\begin{document}
+
+\large  % Slightly larger font than normal
+
+\section*{Minimization of the Boolean Function}
+
+Given the K-map with variables \(x, y, z\):
+
+\[
+\begin{array}{c|cccc}
+x \backslash yz & 00 & 01 & 11 & 10 \\ \hline
+0 & 1 & 1 & 1 & 0 \\
+1 & 0 & 0 & 1 & 0 \\
+\end{array}
+\]
+
+where the entries with 1 correspond to the minterms:
+
+\[
+m_0, m_1, m_3, m_7
+\]
+
+---
+
+\textbf{Step 1: Write the canonical sum of products}
+
+\[
+f = m_0 + m_1 + m_3 + m_7 = x'y'z' + x'y'z + x'yz + xyz
+\]
+
+---
+
+\textbf{Step 2: Group terms from the K-map}
+
+From the K-map, group the first three 1's in the top row:
+
+\[
+x'(y'z' + y'z + y z) = x' (y' + y z)
+\]
+
+Using Boolean algebra, simplify inside the parentheses:
+
+\[
+y' + y z = y' + z
+\]
+
+Thus,
+
+\[
+f = x'(y' + z) + x y z
+\]
+
+---
+
+\textbf{Step 3: Expand the expression}
+
+\[
+f = x'y' + x'z + xyz
+\]
+
+---
+
+\textbf{Step 4: Check for further simplification}
+
+Using the consensus theorem, the term \(x'z\) is redundant because it is the consensus of \(x'y'\) and \(y z\). Hence, we can write:
+
+\[
+f = x'y' + y z
+\]
+
+---
+
+\textbf{Final simplified expression:}
+
+\[
+\boxed{
+f = x'y' + y z
+}
+\]
+
+\end{document}
