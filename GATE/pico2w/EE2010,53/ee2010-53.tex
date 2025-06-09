@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Logic Circuit Analysis}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Question Image}
+\begin{center}
+    \includegraphics[width=0.85\textwidth]{question.png} % Replace with actual image filename
+\end{center}
+
+\section*{Target Boolean Function}
+\[
+F = x'y' + yz
+\]
+
+\section*{Option (A)}
+
+\begin{itemize}
+    \item Top-left gate: $x'$
+    \item Top-middle AND gate: $x' \cdot x = 0$ (because $x' \cdot x = 0$)
+    \item Bottom AND gate: $y \cdot z$
+    \item Final AND gate: $0 \cdot yz = 0$
+\end{itemize}
+\[
+F_A = 0
+\]
+\textbf{Incorrect. Always evaluates to zero due to $x \cdot x'$.}
+
+\section*{Option (B)}
+
+\begin{itemize}
+    \item Top wire: $x$
+    \item Bottom AND gate: $y \cdot z$
+    \item OR gate: $x + yz$
+\end{itemize}
+\[
+F_B = x + yz
+\]
+\textbf{Incorrect. No $x'y'$ term present.}
+
+\section*{Option (C)}
+
+\begin{itemize}
+    \item Top-left gate: $x'$
+    \item Top-middle AND: $x' \cdot x = 0$
+    \item Bottom AND: $y \cdot z$
+    \item Bottom NOT: $(y \cdot z)'$
+    \item Final AND: $0 \cdot (y \cdot z)' = 0$
+\end{itemize}
+\[
+F_C = 0
+\]
+\textbf{Incorrect. Again cancels due to $x' \cdot x = 0$.}
+
+\section*{Option (D)}
+
+\begin{itemize}
+    \item Top path: $x \rightarrow x'$, $y \rightarrow y'$, then $x'y'$ via AND gate.
+    \item Bottom path: $y \cdot z$
+    \item Final OR gate: $x'y' + yz$
+\end{itemize}
+\[
+F_D = x'y' + yz
+\]
+\textbf{Correct! Matches the required Boolean function.}
+
+\end{document}
