@@ -48,4 +48,23 @@ a & b & c & f = c \\
 \end{array}
 \]
 
+\bigskip
+
+\section*{Raspberry Pi Pico Pin Connections}
+
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Signal} & \textbf{GPIO Pin} & \textbf{Purpose} \\
+\hline
+\(a\) & GPIO 14 & Push button input (pulled down) \\
+\(b\) & GPIO 15 & Push button input (pulled down) \\
+\(c\) & GPIO 16 & Push button input (pulled down) \\
+\(f\) & GPIO 17 & Output to LED \\
+\hline
+\end{tabular}
+
+\bigskip
+
+\textit{Note: Connect each button between the GPIO pin and 3.3V. Use internal pull-down resistors. Connect an LED (with resistor) from GPIO 17 to GND.}
+
 \end{document}
