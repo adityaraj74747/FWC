@@ -40,7 +40,7 @@ f = m_0 + m_1 + m_3 + m_7 = x'y'z' + x'y'z + x'yz + xyz
 From the K-map, group the first three 1's in the top row:
 
 \[
-x'(y'z' + y'z + y z) = x' (y' + y z)
+x'(y'z' + y'z + yz) = x' (y' + y z)
 \]
 
 Using Boolean algebra, simplify inside the parentheses:
@@ -67,7 +67,7 @@ f = x'y' + x'z + xyz
 
 \textbf{Step 4: Check for further simplification}
 
-Using the consensus theorem, the term \(x'z\) is redundant because it is the consensus of \(x'y'\) and \(y z\). Hence, we can write:
+Using the consensus theorem, the term \(x'z\) is redundant because it is the consensus of \(x'y'\) and \(yz\). Hence, we can write:
 
 \[
 f = x'y' + y z
@@ -82,5 +82,26 @@ f = x'y' + y z
 f = x'y' + y z
 }
 \]
+
+\bigskip
+
+\section*{Raspberry Pi Pico GPIO Pin Mapping}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Signal} & \textbf{GPIO Pin} & \textbf{Purpose} \\
+\hline
+\(x\) & GPIO 14 & Input from push button (with pull-down) \\
+\(y\) & GPIO 15 & Input from push button (with pull-down) \\
+\(z\) & GPIO 16 & Input from push button (with pull-down) \\
+\(f\) & GPIO 17 & Output to LED \\
+\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+
+\textit{Note: Connect each push button between 3.3V and its respective GPIO pin. Use internal pull-down resistors. Connect the LED with a current-limiting resistor from GPIO 17 to GND.}
 
 \end{document}
