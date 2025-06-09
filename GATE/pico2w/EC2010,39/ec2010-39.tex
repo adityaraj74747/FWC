@@ -43,7 +43,7 @@ f(a,b,c,d) = \overline{a}\,\overline{b}\,c + \overline{a}b\,d + a\,\overline{b}\
 
 \section*{Step 3: List All Resulting Minterms}
 
-Use variable order: $a, b, c, d$ (MSB to LSB):
+Using variable order $a, b, c, d$ (MSB to LSB):
 
 \begin{itemize}
     \item $\overline{a}\,\overline{b}\,c\,d \rightarrow 0011 = m_3$
@@ -60,5 +60,23 @@ Use variable order: $a, b, c, d$ (MSB to LSB):
 \[
 \boxed{f(a,b,c,d) = \sum m(2, 3, 5, 7, 8, 9, 12)}
 \]
+
+\section*{Raspberry Pi Pico Pin Connections}
+
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Signal} & \textbf{GPIO Pin} & \textbf{Purpose} \\
+\hline
+\(a\) & GPIO 14 & Select input A (push button with pull-down) \\
+\(b\) & GPIO 15 & Select input B (push button with pull-down) \\
+\(c\) & GPIO 16 & Data input (push button with pull-down) \\
+\(d\) & GPIO 18 & Data input (push button with pull-down) \\
+\(f\) & GPIO 17 & Output to LED \\
+\hline
+\end{tabular}
+
+\bigskip
+
+\textit{Note: Connect each button between the GPIO and 3.3V. Enable internal pull-down resistors. Use a current-limiting resistor with the LED from GPIO 17 to GND.}
 
 \end{document}
