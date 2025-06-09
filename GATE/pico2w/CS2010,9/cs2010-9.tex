@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\begin{document}
+
+\section*{Deduction of \(f = r \oplus p \oplus q\)}
+
+\subsection*{Truth Table}
+
+\[
+\begin{array}{|c|c|c|c|}
+\hline
+r & p & q & f \\
+\hline
+0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 1 \\
+0 & 1 & 0 & 1 \\
+0 & 1 & 1 & 0 \\
+1 & 0 & 0 & 1 \\
+1 & 0 & 1 & 0 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 1 & 1 \\
+\hline
+\end{array}
+\]
+
+\subsection*{Step 1: Write the canonical sum of products (SOP)}
+
+From the truth table, \(f=1\) for minterms where
+
+\[
+(r, p, q) = (0,0,1), (0,1,0), (1,0,0), (1,1,1)
+\]
+
+which correspond to minterms:
+
+\[
+m_1, m_2, m_4, m_7
+\]
+
+Therefore, the SOP expression is:
+
+\[
+f = r' p' q + r' p q' + r p' q' + r p q
+\]
+
+\subsection*{Step 2: Recognize the XOR pattern}
+
+The above expression matches the standard 3-variable XOR:
+
+\[
+f = r \oplus p \oplus q
+\]
+
+since \(f=1\) when an odd number of inputs are 1.
+
+\subsection*{Step 3: Final expression}
+
+\[
+\boxed{
+f = r \oplus p \oplus q
+}
+\]
+
+\bigskip
+
+\section*{Raspberry Pi Pico Pin Connections}
+
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Signal} & \textbf{Pin Number} & \textbf{Description} \\
+\hline
+\(r\) & GPIO 14 & Push button input with pull-down resistor \\
+\(p\) & GPIO 15 & Push button input with pull-down resistor \\
+\(q\) & GPIO 16 & Push button input with pull-down resistor \\
+\(f\) (Output) & GPIO 17 & LED output \\
+\hline
+\end{tabular}
+
+\bigskip
+\textit{Note: Connect push buttons between the respective GPIO pins and 3.3V with internal pull-down enabled. Connect an LED (with suitable resistor) to GPIO 17 for output indication.}
+
+\end{document}
