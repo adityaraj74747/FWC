@@ -1,0 +1,64 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\geometry{margin=1in}
+\fancyhead[L]{}
+\fancyhead[R]{}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\begin{document}
+
+\section*{Problem Setup}
+
+Given a 4:1 multiplexer:
+\begin{itemize}
+    \item Select lines: $a$ and $b$
+    \item Inputs:
+    \[
+    \begin{aligned}
+    i_0 &= c \\
+    i_1 &= d \\
+    i_2 &= \overline{c} \\
+    i_3 &= \overline{c} \cdot \overline{d}
+    \end{aligned}
+    \]
+\end{itemize}
+
+\section*{Step 1: MUX Output Expression}
+
+\[
+f(a,b,c,d) = \overline{a}\,\overline{b}\,c + \overline{a}b\,d + a\,\overline{b}\,\overline{c} + ab\,\overline{c}\,\overline{d}
+\]
+
+\section*{Step 2: Expand Terms to Include All Variables}
+
+\begin{align*}
+\text{Term 1: } & \overline{a}\,\overline{b}\,c = \overline{a}\,\overline{b}\,c(d + \overline{d}) = \overline{a}\,\overline{b}\,c\,d + \overline{a}\,\overline{b}\,c\,\overline{d} \\
+\text{Term 2: } & \overline{a}b\,d = \overline{a}b\,d(c + \overline{c}) = \overline{a}b\,d\,c + \overline{a}b\,d\,\overline{c} \\
+\text{Term 3: } & a\,\overline{b}\,\overline{c} = a\,\overline{b}\,\overline{c}(d + \overline{d}) = a\,\overline{b}\,\overline{c}\,d + a\,\overline{b}\,\overline{c}\,\overline{d} \\
+\text{Term 4: } & ab\,\overline{c}\,\overline{d} \text{ already includes all variables}
+\end{align*}
+
+\section*{Step 3: List All Resulting Minterms}
+
+Use variable order: $a, b, c, d$ (MSB to LSB):
+
+\begin{itemize}
+    \item $\overline{a}\,\overline{b}\,c\,d \rightarrow 0011 = m_3$
+    \item $\overline{a}\,\overline{b}\,c\,\overline{d} \rightarrow 0010 = m_2$
+    \item $\overline{a}b\,d\,c \rightarrow 0111 = m_7$
+    \item $\overline{a}b\,d\,\overline{c} \rightarrow 0101 = m_5$
+    \item $a\,\overline{b}\,\overline{c}\,d \rightarrow 1001 = m_9$
+    \item $a\,\overline{b}\,\overline{c}\,\overline{d} \rightarrow 1000 = m_8$
+    \item $a\,b\,\overline{c}\,\overline{d} \rightarrow 1100 = m_{12}$
+\end{itemize}
+
+\section*{Final Answer: Sum of Minterms}
+
+\[
+\boxed{f(a,b,c,d) = \sum m(2, 3, 5, 7, 8, 9, 12)}
+\]
+
+\end{document}
