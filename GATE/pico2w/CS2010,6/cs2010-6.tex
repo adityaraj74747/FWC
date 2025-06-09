@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\begin{document}
+
+\section*{Minterm Expression of \(f(p, q, r) = pq + qr' + pr'\)}
+
+\subsection*{Step 1: Truth Table}
+
+\[
+\begin{array}{|c|c|c|c|c|c|c|}
+\hline
+p & q & r & pq & qr' & pr' & f = pq + qr' + pr' \\
+\hline
+0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 1 & 0 & 1 \\
+0 & 1 & 1 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 1 & 1 \\
+1 & 0 & 1 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & 1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 & 0 & 0 & 1 \\
+\hline
+\end{array}
+\]
+
+\subsection*{Step 2: Identify Rows Where \(f = 1\)}
+
+The function is true for the following combinations:
+\[
+\begin{aligned}
+(0,1,0) &\Rightarrow m_2 = p' q r' \\
+(1,0,0) &\Rightarrow m_4 = p q' r' \\
+(1,1,0) &\Rightarrow m_6 = p q r' \\
+(1,1,1) &\Rightarrow m_7 = p q r \\
+\end{aligned}
+\]
+
+\subsection*{Step 3: Canonical SOP (Minterm) Expression}
+
+\[
+\boxed{f(p, q, r) = m_2 + m_4 + m_6 + m_7}
+\]
+
+
+
+\section*{Raspberry Pi Pico Pin Connections}
+
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Signal} & \textbf{GPIO Pin} & \textbf{Description} \\
+\hline
+\(p\) & GPIO 15 & Push button input with pull-down resistor \\
+\(q\) & GPIO 16 & Push button input with pull-down resistor \\
+\(r\) & GPIO 14 & Push button input with pull-down resistor \\
+\(f\) (Output) & GPIO 17 & Output to LED \\
+\hline
+\end{tabular}
+
+\bigskip
+\textit{Note: Connect push buttons between GPIO pins and 3.3V. Enable internal pull-down resistors. Connect LED (with resistor) from GPIO 17 to GND.}
+
+\end{document}
