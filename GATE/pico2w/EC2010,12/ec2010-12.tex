@@ -1,0 +1,51 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{array}
+
+\begin{document}
+
+\Large
+
+\section*{Logic Circuit Analysis and Simplification}
+
+Given a circuit with inputs \(a, b, c\), the logic operations are:
+
+\begin{align*}
+X &= a \oplus b \\
+Y &= \overline{a \oplus b} = X' \\
+f &= \overline{X \oplus Y \oplus c}
+\end{align*}
+
+Since \(X \oplus X' = 1\), we simplify:
+\[
+f = \overline{1 \oplus c} = \overline{\overline{c}} = c
+\]
+
+\subsection*{Final Expression:}
+\[
+\boxed{f = c}
+\]
+
+\bigskip
+
+\section*{Truth Table}
+
+\[
+\begin{array}{|c|c|c||c|}
+\hline
+a & b & c & f = c \\
+\hline
+0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 1 \\
+0 & 1 & 0 & 0 \\
+0 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 \\
+1 & 0 & 1 & 1 \\
+1 & 1 & 0 & 0 \\
+1 & 1 & 1 & 1 \\
+\hline
+\end{array}
+\]
+
+\end{document}
