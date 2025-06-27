@@ -1,0 +1,71 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{setspace}
+\geometry{margin=1in}
+\renewcommand{\arraystretch}{1.4}
+\setstretch{1.3}
+
+\begin{document}
+
+\section*{Minterm Expression of \(f(W, X, Y) = WX + X Y' + W Y'\)}
+
+\subsection*{Step 1: Truth Table}
+
+\[
+\begin{array}{|c|c|c|c|c|c|c|c|}
+\hline
+W & X & Y & WX & XY' & WY' & f = WX + XY' + WY' \\
+\hline
+0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 1 & 0 & 1 \\
+0 & 1 & 1 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 1 & 1 \\
+1 & 0 & 1 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & 1 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 & 0 & 0 & 1 \\
+\hline
+\end{array}
+\]
+
+\subsection*{Step 2: Identify Rows Where \(f = 1\)}
+
+The function is true for the following combinations:
+\[
+\begin{aligned}
+(0,1,0) &\Rightarrow m_2 = W' X Y' \\
+(1,0,0) &\Rightarrow m_4 = W X' Y' \\
+(1,1,0) &\Rightarrow m_6 = W X Y' \\
+(1,1,1) &\Rightarrow m_7 = W X Y \\
+\end{aligned}
+\]
+
+\subsection*{Step 3: Canonical SOP (Minterm) Expression}
+
+\[
+\boxed{f(W, X, Y) = m_2 + m_4 + m_6 + m_7}
+\]
+
+\section*{Vaman Board Pin Connections}
+
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Signal} & \textbf{PYGMY Pins} & \textbf{Description} \\
+\hline
+\(W\) & IO\_28 & Push button input with pull-down resistor \\
+\(X\) & IO\_23 & Push button input with pull-down resistor \\
+\(Y\) & IO\_31 & Push button input with pull-down resistor \\
+\(f\) (Output) & 7-segment display & Active-low output to display \(f\) as digit \texttt{0} or \texttt{1} \\
+\hline
+\end{tabular}
+
+\bigskip
+\textit{Note: Connect push buttons between input pins and 3.3V.  
+Enable internal pull-down resistors.  
+Use a common cathode 7-segment display.  
+Segment logic is active-low: segment glows when output is 0.}
+
+\end{document}
+
