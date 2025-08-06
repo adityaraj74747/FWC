@@ -1,4 +1,4 @@
-# ESP32 Fingerprint Attendance System
+# Fingerprint Attendance System
 
 A WiFi-enabled fingerprint attendance system using ESP32 and R307 sensor. Attendance is logged in real time to Google Sheets via a web endpoint.
 
@@ -32,12 +32,7 @@ A WiFi-enabled fingerprint attendance system using ESP32 and R307 sensor. Attend
 
 ## Example Sheet Layout
 
-| Serial | Name        | Comet ID     | Time                |
-|--------|-------------|--------------|---------------------|
-| 1      | Aditya Raj  | COMETFWC015  | 2025-07-30 16:05:23 |
-
----
-
-**Author:** Aditya Raj  
-**License:** MIT  
+Name        | Comet ID     | Time                |
+------------|--------------|---------------------|
+Aditya Raj  | COMETFWC015  | 2025-07-30 16:05:23 |  
 
