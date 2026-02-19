@@ -1,87 +1,179 @@
-﻿NAVIC L5 SDR RECEIVER PROJECT
+﻿# NAVIC L5 SDR RECEIVER PROJECT
 
-This project was carried out under the guidance of Mr. Srikanth Reddy, Training Specialist, IIITB. The objective of this work is to implement a real-time NavIC L5 receiver using Software Defined Radio (SDR).
+## Overview
 
-PROJECT OVERVIEW
+This project implements a **real-time NavIC L5 receiver** using **Software Defined Radio (SDR)**. The complete signal chain—from baseband signal generation to RF transmission, reception, and position computation—is realized using open-source tools and custom-developed modules.
 
-A real-time NavIC L5 signal transmission and reception chain is implemented using SDR hardware. Signal generation, transmission, reception, and position computation are carried out using open-source tools and custom implementations.
+The work was carried out under the guidance of **Mr. Srikanth Reddy**, Training Specialist, **IIIT Bangalore (IIITB)**.
 
-REQUIREMENTS
+---
 
-Hardware Requirements:
-USRP SDR
-bladeRF SDR
-PC with 64-bit Linux operating system
+## Objectives
 
-Software Requirements:
-RTKLIB
-UHD (USRP Hardware Driver)
+- Generate NavIC L5 baseband IQ samples  
+- Transmit NavIC L5 signals using SDR hardware  
+- Receive and process NavIC L5 signals in real time  
+- Decode observations and compute receiver position using RTKLIB  
 
-SYSTEM SPECIFICATIONS
+---
 
-Receiver sampling frequency: 2.048 MHz
+## System Architecture
 
-INSTALLATIONS
+1. Signal Generation – NavIC L5 IQ samples using `navic-sdr-sim`  
+2. Transmission – SDR-based RF transmission (USRP / bladeRF)  
+3. Reception – Real-time SDR receiver processing  
+4. Observation Generation – RINEX observation and navigation files  
+5. Position Computation – RTKLIB-based PVT solution  
 
-Install and configure bladeRF and USRP using the instructions provided in the following link:
+---
+
+## Requirements
+
+### Hardware Requirements
+- USRP SDR  
+- bladeRF SDR  
+- PC with 64-bit Linux operating system  
+
+### Software Requirements
+- UHD (USRP Hardware Driver)  
+- bladeRF drivers and utilities  
+- RTKLIB  
+- SVN, Git, GCC toolchain  
+
+---
+
+## System Specifications
+
+- Receiver Sampling Frequency: **2.048 MHz**  
+- Signal Type: **NavIC L5**  
+- IQ Format: **16-bit / 8-bit (I/Q interleaved)**  
+
+---
+
+## Installations
+
+Install and configure **USRP** and **bladeRF** using the instructions provided at:
+
 https://github.com/adityaraj74747/FWC/blob/main/NavIC/Codes/installations.txt
 
-TRANSMITTER SETUP
+Ensure that SDR devices are properly detected before proceeding.
 
-To generate NavIC L5 IQ samples, download the transmitter source code using SVN:
+---
 
+## Transmitter Setup
+
+### Download Transmitter Source Code
+
+```bash
 svn co https://github.com/adityaraj74747/FWC/blob/main/NavIC/Codes/Transmitter
+```
 
-Compile the transmitter:
+### Compile the Transmitter
 
+```bash
 make
+```
 
-This generates a binary file containing IQ samples for a duration of 300 seconds with 16-bit resolution. In the generated binary file, the first 16 bits correspond to the I component and the next 16 bits correspond to the Q component. This pattern continues throughout the file and is used for SDR transmission.
+This generates a binary file containing IQ samples with:
+- Duration: 300 seconds  
+- Resolution: 16-bit  
+- Format:
+  - First 16 bits → I  
+  - Next 16 bits → Q  
+  - Pattern repeats throughout the file  
 
-Generate IQ samples using navic-sdr-sim:
+---
 
+### Generate NavIC L5 IQ Samples Using navic-sdr-sim
+
+#### 16-bit IQ Samples
+
+```bash
 ./navic-sdr-sim -e brdc1380.23n -s 2048000 -l 30,120,100
+```
 
-For SDR transmission that requires 8-bit IQ samples, generate the file with 8-bit resolution. In this format, the first 8 bits correspond to I and the next 8 bits correspond to Q:
+#### 8-bit IQ Samples (For SDRs requiring 8-bit input)
 
+```bash
 ./navic-sdr-sim -e brdc1380.23n -s 2048000 -l 30,120,100 -b 8
+```
 
-RECEIVER SETUP
+8-bit IQ Format:
+- First 8 bits → I  
+- Next 8 bits → Q  
 
-To run the NavIC receiver, download the receiver source code:
+---
 
+## Receiver Setup
+
+### Download Receiver Source Code
+
+```bash
 svn co https://github.com/adityaraj74747/FWC/blob/main/NavIC/Codes/Receiver
+```
 
-Navigate to the Linux CLI directory:
+### Compile the Receiver
 
+```bash
 cd Receiver/cli/linux
-
-Compile the receiver:
-
 make
+```
 
-Move to the binary directory:
+### Run the Receiver
 
+```bash
 cd Receiver/bin
-
-Launch the SDR receiver application:
-
 ./ignss-sdrcli
+```
 
-RTKLIB INSTALLATION AND POSITION COMPUTATION
+The receiver performs:
+- RF signal capture  
+- Baseband processing  
+- Acquisition and tracking  
+- RINEX observation and navigation file generation  
 
-Clone the RTKLIB repository:
+---
 
+## RTKLIB Installation and Position Computation
+
+### Clone RTKLIB
+
+```bash
 git clone https://github.com/tomojitakasu/RTKLIB.git
+```
 
-Navigate to the rnx2rtkp build directory:
+### Compile rnx2rtkp
 
+```bash
 cd RTKLIB/app/rnx2rtkp/gcc
-
-Compile RTKLIB:
-
 make
+```
 
-Copy the generated rnx2rtkp executable to the directory containing the generated RINEX observation and navigation files. Execute RTKLIB using the following command:
+### Compute Receiver Position
 
+Copy the `rnx2rtkp` binary to the directory containing the RINEX files and run:
+
+```bash
 ./rnx2rtkp -p 2 -f 1 -t -s , -l 0.0 0.0 0.0 ignss-sdrlib.obs ignss-sdrlib.nav
+```
+
+This computes the receiver position using NavIC RINEX observation and navigation files.
+
+---
+
+## Outputs
+
+- RINEX Observation File (.obs)  
+- RINEX Navigation File (.nav)  
+- Receiver position (latitude, longitude, height)  
+- Quality and accuracy metrics  
+
+---
+
+## Notes
+
+- Ensure correct SDR sampling rate and clock configuration  
+- Use appropriate RF gain to avoid saturation  
+- Accurate broadcast ephemeris (BRDC file) is essential for correct positioning  
+
+---
