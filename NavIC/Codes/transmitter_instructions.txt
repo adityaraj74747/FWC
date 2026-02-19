@@ -1,0 +1,38 @@
+NavIC L5 POC – Transmitter Execution Instructions
+================================================
+
+Base Directory
+--------------
+~/FWC/NavIC/Codes/
+
+
+Build Transmitter
+-----------------
+cd ~/FWC/NavIC/Codes/Transmitter
+make
+
+
+Generate Baseband IQ Samples
+----------------------------
+./navic-sdr-sim -s 2500000 -e brdc1380.23n -b 16 -d 300 -l 30,120,100
+
+
+Generated Output
+----------------
+~/FWC/NavIC/Codes/Transmitter/navicsim.bin
+
+
+USRP Transmission
+-----------------
+
+Verify USRP
+-----------
+uhd_usrp_probe
+
+
+Transmit Samples
+----------------
+(Execute from the directory containing navicsim.bin)
+
+./tx_samples_from_file --file navicsim.bin --type short --rate 2500000 --freq 1176450000 --gain 75
+

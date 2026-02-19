@@ -1,0 +1,40 @@
+NavIC L5 POC – Receiver Execution Instructions
+=============================================
+
+Base Directory
+--------------
+~/FWC/NavIC/Codes/
+
+
+Build Receiver
+--------------
+cd ~/FWC/NavIC/Codes/Receiver/cli/linux
+make
+
+
+Run Receiver
+------------
+cd ~/FWC/NavIC/Codes/Receiver/bin
+./ignss-sdrcli
+
+
+BladeRF Configuration
+---------------------
+bladeRF-cli -i <<EOF
+set frequency rx 1176.45e6
+set frequency tx 47e6
+set agc off
+set samplerate 2.048e6
+set bandwidth 3.0e6
+set gain rx 60
+set gain tx 0
+set clock sel onboard
+set biastee rx off
+EOF
+
+
+Position Computation (RTKLIB)
+----------------------------
+cd ~/FWC/NavIC/Codes/Receiver/bin/rinex
+./rnx2rtkp -p 2 -f 1 -t -s , -l 0.0 0.0 0.0 ignss-sdrlib.obs ignss-sdrlib.nav
+

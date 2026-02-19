@@ -1,0 +1,95 @@
+﻿USRP AND BladeRF SETUP GUIDE (LINUX)
+
+This document describes the complete procedure to install, build, and verify UHD (USRP Hardware Driver) and bladeRF on a Linux system, followed by basic usage commands for device detection and transmission.
+
+UHD (USRP Hardware Driver) Installation
+
+Install UHD from the official Ettus Research repository:
+
+sudo apt-get install libuhd-dev uhd-host
+sudo add-apt-repository ppa:ettusresearch/uhd
+sudo apt-get update
+sudo apt-get install libuhd-dev uhd-host
+
+Install required development dependencies:
+
+sudo apt-get install autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool g++ git inetutils-tools libboost-all-dev libncurses5 libncurses5-dev libusb-1.0-0 libusb-1.0-0-dev libusb-dev python3-dev python3-mako python3-numpy python3-requests python3-scipy python3-setuptools python3-ruamel.yaml
+
+Build UHD from source (optional but recommended):
+
+git clone https://github.com/EttusResearch/uhd.git
+cd uhd/host
+mkdir build
+cd build
+cmake ../
+cmake -DCMAKE_INSTALL_PREFIX=/opt/uhd ../
+make
+sudo ldconfig
+
+Download USRP firmware and FPGA images (mandatory step):
+
+/usr/local/lib/uhd/utils/uhd_images_downloader.py
+
+Using UHD with USRP
+
+Connect the USRP to the laptop using a USB cable and ensure proper power is supplied.
+
+Verify USRP detection:
+
+uhd_device_find
+uhd_usrp_probe
+
+Transmit samples using USRP:
+
+./tx_samples_from_file --file navicsim.bin --type short --rate 2500000 --freq 1176450000 --gain 75
+
+bladeRF Installation (Linux)
+
+Official documentation:
+https://github.com/Nuand/bladeRF/wiki/Getting-Started%3A-Linux
+
+Install bladeRF packages:r-309@r309-ThinkCentre-neo-50s-Gen-3:~/FWC/NavIC$ cd Codes/
+r-309@r309-ThinkCentre-neo-50s-Gen-3:~/FWC/NavIC/Codes$ cd Transmitter/
+r-309@r309-ThinkCentre-neo-50s-Gen-3:~/FWC/NavIC/Codes/Transmitter$ cd ../Receiver/
+r-309@r309-ThinkCentre-neo-50s-Gen-3:~/FWC/NavIC/Codes/Receiver$ 
+
+
+sudo add-apt-repository ppa:nuandllc/bladerf
+sudo apt-get update
+sudo apt-get install bladerf
+sudo apt-get install libbladerf-dev
+sudo apt-get install bladerf-firmware-fx3
+sudo apt-get install bladerf-fpga-hostedx40
+sudo apt-get install bladerf-fpga-hostedx115
+sudo apt-get install bladerf-fpga-hostedxa4
+sudo apt-get install bladerf-fpga-hostedxa9
+
+Install additional dependencies:
+
+sudo apt-get install libusb-1.0-0-dev libusb-1.0-0 build-essential cmake libncurses5-dev libtecla1 libtecla-dev pkg-config git wget
+
+Verify libusb installation:
+
+dpkg -s libusb-1.0-0 libusb-1.0-0-dev
+
+Install documentation tools:
+
+sudo apt-get install doxygen help2man pandoc
+
+Build bladeRF from source:
+
+git clone https://github.com/Nuand/bladeRF.git ./bladeRF
+cd ./bladeRF
+cd host/
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DINSTALL_UDEV_RULES=ON ../
+groups
+sudo groupadd bladerf
+sudo usermod -a -G bladerf jon
+make && sudo make install && sudo ldconfig
+
+Using bladeRF
+
+To verify basic bladeRF device operation, refer to:
+https://github.com/Nuand/bladeRF/wiki/Getting-Started%3A-Verifying-Basic-Device-Operation
