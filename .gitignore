@@ -1,0 +1,9 @@
+# Generated IQ data
+*.bin
+
+# Receiver build outputs
+NavIC/Codes/Receiver/bin/
+
+# Executables
+navic-sdr-sim
+tx_samples_from_file
