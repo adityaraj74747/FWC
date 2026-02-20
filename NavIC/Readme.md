@@ -52,7 +52,7 @@ The work was carried out under the guidance of **Mr. Srikanth Reddy**, Training 
 
 ## Installations
 
-Install and configure **USRP** and **bladeRF** using the instructions provided at
+Install and configure **USRP** and **bladeRF** using the instructions provided at:
 
 https://github.com/adityaraj74747/FWC/blob/main/NavIC/Codes/installations.txt
 
