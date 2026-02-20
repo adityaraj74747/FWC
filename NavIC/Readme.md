@@ -89,13 +89,13 @@ This generates a binary file containing IQ samples with:
 #### 16-bit IQ Samples
 
 ```bash
-./navic-sdr-sim -e brdc1380.23n -s 2048000 -l 30,120,100
+./navic-sdr-sim -e brdc0470.26n -s 2048000 -l 30,120,100
 ```
 
 #### 8-bit IQ Samples (For SDRs requiring 8-bit input)
 
 ```bash
-./navic-sdr-sim -e brdc1380.23n -s 2048000 -l 30,120,100 -b 8
+./navic-sdr-sim -e brdc0470.26n -s 2048000 -l 30,120,100 -b 8
 ```
 
 8-bit IQ Format:
